@@ -159,4 +159,4 @@ class QMTechXC7A35TPlatform(Xilinx7SeriesPlatform):
 
 if __name__ == "__main__":
     from nmigen_boards.test.blinky import *
-    QMTechXC7A35TPlatform(standalone=False).build(Blinky(), do_program=True)
+    QMTechXC7A35TPlatform(standalone=True).build(Blinky(), do_program=True)
