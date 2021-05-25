@@ -20,8 +20,9 @@ class QMTechXC7A35TPlatform(Xilinx7SeriesPlatform):
             # D3 - we do not use LEDResources here, because there are five LEDs
             # on the daughterboard and this will then clash with those
             self.resources[2] = Resource("core_led", 0, PinsN("E6"), Attrs(IOSTANDARD="LVCMOS33"))
-            self.connectors += QMTechDaughterboard.connectors
-            self.resources  += QMTechDaughterboard.resources
+            daughterboard = QMTechDaughterboard(Attrs(IOSTANDARD="LVCMOS33"))
+            self.connectors += daughterboard.connectors
+            self.resources  += daughterboard.resources
 
         super().__init__(toolchain=toolchain)
 
