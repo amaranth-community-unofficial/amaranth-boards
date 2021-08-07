@@ -41,13 +41,9 @@ class RZEasyFPGAA2_2Platform(IntelPlatform):
             dqm="42 55", attrs=Attrs(io_standard="3.3-V LVCMOS")),
 
         # VGA connector, located on the right of the board.
-        Resource("vga", 0,
-            Subsignal("r", Pins("106", dir="o")),
-            Subsignal("g", Pins("105", dir="o")),
-            Subsignal("b", Pins("104", dir="o")),
-            Subsignal("hs", Pins("101", dir="o")),
-            Subsignal("vs", Pins("103", dir="o")),
-        ),
+        VGAResource(0,
+            r="106", g="105", b="104",
+            hs="101", vs="103"),
 
         # 4 digit 7 segment display, located on top of the board.
         Display7SegResource(0,
@@ -58,10 +54,7 @@ class RZEasyFPGAA2_2Platform(IntelPlatform):
         ),
 
         # PS2 port, located on upper right of the board.
-        Resource("ps2_host", 0, 
-            Subsignal("clk", Pins("119", dir="io")),
-            Subsignal("dat", Pins("120", dir="io")),
-        ),
+        PS2Resource(0, clk="119", dat="120"),
 
         # LM75 temperature sensor
         I2CResource(0, scl="112", sda="113"),

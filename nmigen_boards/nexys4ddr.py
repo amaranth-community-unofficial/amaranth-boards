@@ -57,13 +57,12 @@ class Nexys4DDRPlatform(Xilinx7SeriesPlatform):
         Resource("button_down", 0,
             Pins("P18",  dir="i"), Attrs(IOSTANDARD="LVCMOS33")),
 
-        Resource("vga", 0,
-            Subsignal("r",  Pins("A3 B4 C5 A4", dir="o")),
-            Subsignal("g",  Pins("C6 A5 B6 A6", dir="o")),
-            Subsignal("b",  Pins("B7 C7 D7 D8", dir="o")),
-            Subsignal("hs", Pins("B11"        , dir="o")),
-            Subsignal("vs", Pins("B12"        , dir="o")),
-            Attrs(IOSTANDARD="LVCMOS33")),
+        VGAResource(0,
+            r="A3 B4 C5 A4",
+            g="C6 A5 B6 A6",
+            b="B7 C7 D7 D8",
+            hs="B11", vs="B12",
+            attrs=Attrs(IOSTANDARD="LVCMOS33")),
 
         *SDCardResources(0,
             clk="B1",  cmd="C1",  cd="A1",
@@ -104,10 +103,9 @@ class Nexys4DDRPlatform(Xilinx7SeriesPlatform):
             attrs=Attrs(IOSTANDARD="LVCMOS33"),
             role="dce"),
 
-        Resource("ps2_host", 0,
-            Subsignal("clk", Pins("F4", dir="i")),
-            Subsignal("dat", Pins("B2", dir="io")),
-            Attrs(IOSTANDARD="LVCMOS33", PULLUP="TRUE")),
+        PS2Resource(0,
+            clk="F4", dat="B2",
+            attrs=Attrs(IOSTANDARD="LVCMOS33", PULLUP="TRUE")),
 
         Resource("eth", 0,                                  # LAN8720A
             Subsignal("mdio",   Pins("A9",      dir="io")),

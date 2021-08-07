@@ -10,16 +10,17 @@ __all__ = ["DE10LitePlatform"]
 
 
 class DE10LitePlatform(IntelPlatform):
-    device      = "10M50DAF484" # MAX10
-    package     = "F23"     # FBGA-484
-    speed       = "I7"
+    device      = "10M50DA" # MAX10
+    package     = "F484"     # FBGA-484
+    speed       = "C7"
+    suffix      = "G"
     default_clk = "clk50"
     resources   = [
         Resource("clk10", 0, Pins("N5", dir="i"),
                  Clock(50e6), Attrs(io_standard="3.3-V LVTTL")),
-        Resource("clk50", 1, Pins("P11", dir="i"),
+        Resource("clk50", 0, Pins("P11", dir="i"),
                  Clock(50e6), Attrs(io_standard="3.3-V LVTTL")),
-        Resource("clk50", 2, Pins("N14", dir="i"),
+        Resource("clk50", 1, Pins("N14", dir="i"),
                  Clock(50e6), Attrs(io_standard="3.3-V LVTTL")),
 
         *LEDResources(
@@ -61,13 +62,12 @@ class DE10LitePlatform(IntelPlatform):
             dq="Y21 Y20 AA22 AA21 Y22 W22 W20 V21 P21 J22 H21 H22 G22 G20 G19 F22",
             dqm="V22 J21", attrs=Attrs(io_standard="3.3-V LVCMOS")),
 
-        Resource("vga", 0,
-            Subsignal("r", Pins("AA1 V1 Y2 Y1", dir="o")),
-            Subsignal("g", Pins("W1 T2 R2 R1", dir="o")),
-            Subsignal("b", Pins("P1 T1 P4 N2", dir="o")),
-            Subsignal("hs", Pins("N3", dir="o")),
-            Subsignal("vs", Pins("N1", dir="o")),
-            Attrs(io_standard="3.3-V LVTTL"))
+        VGAResource(0,
+            r="AA1 V1 Y2 Y1",
+            g="W1 T2 R2 R1",
+            b="P1 T1 P4 N2",
+            hs="N3", vs="N1",
+            attrs=Attrs(io_standard="3.3-V LVTTL"))
     ]
     connectors  = [
         Connector("gpio", 0,
