@@ -7,16 +7,20 @@ from nmigen_boards.resources import *
 from nmigen_boards.qmtech_daughterboard import QMTechDaughterboard
 
 
-__all__ = ["QMTechEP4CE15Platform"]
+__all__ = ["QMTechEP4CEPlatform"]
 
 
-class QMTechEP4CE15Platform(IntelPlatform):
-    device      = "EP4CE15"
+class QMTechEP4CEPlatform(IntelPlatform):
+    device      = "EP4CE"
     package     = "F23"
     speed       = "C8"
     default_clk = "clk50"
 
-    def __init__(self, standalone=True):
+    # at the time of writing EP4CE15 and EP4CE55 are available from QMTech
+    # so no_kluts = 15 or 55 for these platforms
+    def __init__(self, no_kluts=15, standalone=True):
+        self.device += str(no_kluts)
+
         if not standalone:
             # D3 - we do not use LEDResources/ButtonResources here, because there are five LEDs
             # on the daughterboard and this will then clash with those
@@ -123,4 +127,4 @@ class QMTechEP4CE15Platform(IntelPlatform):
 
 if __name__ == "__main__":
     from nmigen_boards.test.blinky import Blinky
-    QMTechEP4CE15Platform(standalone=True).build(Blinky(), do_program=True)
+    QMTechEP4CEPlatform(standalone=True).build(Blinky(), do_program=True)
