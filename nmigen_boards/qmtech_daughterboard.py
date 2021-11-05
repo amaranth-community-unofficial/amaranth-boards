@@ -7,7 +7,7 @@ class QMTechDaughterboard:
     def __init__(self, attrs) -> None:
         self.resources = [
             UARTResource(0,
-                rx="J_2:15", tx="J_2:16",
+                tx="J_2:15", rx="J_2:16",
                 attrs=attrs
             ),
 

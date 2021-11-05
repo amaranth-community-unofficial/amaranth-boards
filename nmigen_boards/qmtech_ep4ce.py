@@ -40,8 +40,13 @@ class QMTechEP4CEPlatform(IntelPlatform):
         *LEDResources(
             pins="E4",
             attrs=Attrs(io_standard="3.3-V LVTTL")),
+
         *ButtonResources(
             pins="Y13 W13", invert=True,
+            attrs=Attrs(io_standard="3.3-V LVTTL")),
+
+        *SPIFlashResources(0,
+            cs_n="E2", clk="K2", copi="D1", cipo="K1",
             attrs=Attrs(io_standard="3.3-V LVTTL")),
 
         SDRAMResource(0,

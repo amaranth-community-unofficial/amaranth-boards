@@ -36,8 +36,13 @@ class QMTech10CL006Platform(IntelPlatform):
         *LEDResources(
             pins="L9",
             attrs=Attrs(io_standard="3.3-V LVTTL")),
+
         *ButtonResources(
             pins="F3 J6", invert=True,
+            attrs=Attrs(io_standard="3.3-V LVTTL")),
+
+        *SPIFlashResources(0,
+            cs_n="D2", clk="H1", copi="C1", cipo="H2",
             attrs=Attrs(io_standard="3.3-V LVTTL")),
 
         SDRAMResource(0,
