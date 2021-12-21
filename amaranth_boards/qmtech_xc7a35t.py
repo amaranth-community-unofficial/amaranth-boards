@@ -1,10 +1,10 @@
 import os
 import subprocess
 
-from nmigen.build import *
-from nmigen.vendor.xilinx_7series import *
-from nmigen_boards.resources import *
-from nmigen_boards.qmtech_daughterboard import QMTechDaughterboard
+from amaranth.build import *
+from amaranth.vendor.xilinx_7series import *
+from amaranth_boards.resources import *
+from amaranth_boards.qmtech_daughterboard import QMTechDaughterboard
 
 __all__ = ["QMTechXC7A35TCorePlatform"]
 
@@ -158,5 +158,5 @@ class QMTechXC7A35TPlatform(Xilinx7SeriesPlatform):
 
 
 if __name__ == "__main__":
-    from nmigen_boards.test.blinky import *
+    from amaranth_boards.test.blinky import *
     QMTechXC7A35TPlatform(standalone=True).build(Blinky(), do_program=True)
