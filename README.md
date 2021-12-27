@@ -1,6 +1,12 @@
 # Board definitions for Amaranth HDL
 
-TODO
+This is an interim solution for a convenient way to provide
+all the currently open merge requests to users of the said boards.
+This fork will go away once all pull requests of amaranth-lang/amaranth-boards
+are merged.
+
+Before using this, beware that things may break in the official project,
+once the pull requests are merged there.
 
 ## License
 
