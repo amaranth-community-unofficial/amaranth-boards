@@ -41,7 +41,7 @@ class QMTechXC7K325TPlatform(XilinxPlatform):
 
         *ButtonResources(pins="AF10", attrs=Attrs(IOSTANDARD="LVCMOS18")),
 
-        # MT25QL128
+        # S25FL256L
         Resource("qspi_flash", 0,
             Subsignal("cs",        PinsN("C23")),
             Subsignal("clk",       Pins("C8")),
