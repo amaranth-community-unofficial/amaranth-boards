@@ -7,12 +7,13 @@ from .resources import *
 
 from amaranth_boards.qmtech_daughterboard import QMTechDaughterboard
 from amaranth_boards.colorlight_i5 import ColorLightI5Platform
+from amaranth_boards.colorlight_i9 import ColorLightI9Platform
 
 __all__ = ["ColorlightQMTechPlatform"]
 
 """
     This board is an adapter from the Colorlight i5/i9 SODIMM modules
-    to QMTech board form factor.
+    to the QMTech board form factor.
     This board is open hardware:
     https://github.com/hansfbaier/colorlight-qmtech-adapter
 """
@@ -79,7 +80,7 @@ class ColorlightQMTechPlatform(LatticeECP5Platform):
         }),
         Connector("J", 3, {
             # odd row     even row
-             "7":  "R1",    "8":  "U16",
+             "7": "R1",     "8": "U16",
              "9": "C18",   "10": "K18",
             "11": "R18",   "12": "T18",
             "13": "P17",   "14": "R17",
