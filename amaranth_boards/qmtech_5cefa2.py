@@ -20,7 +20,7 @@ class QMTech5CEFA2Platform(IntelPlatform):
         if not standalone:
             # D3 - we do not use LEDResources/ButtonResources here, because there are five LEDs
             # on the daughterboard and this will then clash with those
-            self.resources[1] = Resource("core_led",    0, PinsN("D17"), Attrs(io_standard="3.3-V LVTTL"))
+            self.resources[1] = Resource("core_led",    0, PinsN("D17", dir="o"), Attrs(io_standard="3.3-V LVTTL"))
             self.resources[2] = Resource("core_button", 0, PinsN("AB13"), Attrs(io_standard="3.3-V LVTTL"))
             self.resources[3] = Resource("core_button", 1, PinsN("V18"), Attrs(io_standard="3.3-V LVTTL"))
             daughterboard = QMTechDaughterboard(Attrs(io_standard="3.3-V LVTTL"))
