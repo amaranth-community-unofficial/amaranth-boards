@@ -208,7 +208,7 @@ class HPCStoreXC7K420TPlatform(XilinxPlatform):
             "51": "AC3",    "52": "AH1",
             "53": "AC4",    "54": "AH2",
           # "55": "GND",    "56": "GND",
-            "57": "NC",     "58": "AC19",
+                            "58": "AC19",
             "59": "L17",    "60": "AB19",
           # "61": "GND",    "62": "GND",
             "63": "AC20",   "64": "AB20",
