@@ -72,6 +72,12 @@ class HPCStoreXC7K420TPlatform(XilinxPlatform):
             # SODIMM located near the power side
             Resource("ddr3", 1,
                 Subsignal("rst",    PinsN("Y21", dir="o"), Attrs(IOSTANDARD="LVCMOS15")),
+                Subsignal("clk",    DiffPairs("AA22", "AA23", dir="o"), Attrs(IOSTANDARD="DIFF_SSTL15")),
+                Subsignal("clk_en", Pins("AB22")),
+                Subsignal("cs",     PinsN("AE21", dir="o")),
+                Subsignal("we",     PinsN("AJ21", dir="o")),
+                Subsignal("ras",    PinsN("AF20", dir="o")),
+                Subsignal("cas",    PinsN("AK21", dir="o")),
                 Subsignal("a",      Pins("AG22 AJ23 AF22 AJ26 AG23 AD23 AF23 AJ24 AE23 AB23 AJ22 AK25 AD21 AD22 AK24", dir="o")),
                 Subsignal("ba",     Pins("AK23 AF21 AC21", dir="o")),
                 Subsignal("dqs",    DiffPairs("Y30 AB25 AC29 AJ27 AC17 AK19 AC16 AG14", "AA30 AC25 AC30 AJ28 AD17 AK20 AD16 AG15", dir="io"),
@@ -82,7 +88,7 @@ class HPCStoreXC7K420TPlatform(XilinxPlatform):
                                          "AF16 AE16 AE15 AF15 AC15 AB15 AC14 AB14 AH17 AH16 AK14 AJ14 AF17 AG17 AH15 AH14", dir="io"),
                                     Attrs(IOSTANDARD="SSTL15")),
                 Subsignal("dm",     Pins("AA28 AA27 AE28 AH30 AB18 AJ19 AD14 AK16", dir="o")),
-                Subsignal("odt",    Pins("AG20", dir="o")),
+                Subsignal("odt",    Pins("AH24", dir="o")),
                 Attrs(IOSTANDARD="SSTL15", SLEW="FAST"),
             ),
 
