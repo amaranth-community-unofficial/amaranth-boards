@@ -15,7 +15,7 @@ class HPCStoreXC7K420TPlatform(XilinxPlatform):
     device      = "xc7k420t"
     package     = "ffg901"
     speed       = "2"
-    default_clk = "diffclk100"
+    default_clk = "clk100"
     IO_3V3      = True
 
     resources   = [ ]
@@ -88,7 +88,7 @@ class HPCStoreXC7K420TPlatform(XilinxPlatform):
                                          "AF16 AE16 AE15 AF15 AC15 AB15 AC14 AB14 AH17 AH16 AK14 AJ14 AF17 AG17 AH15 AH14", dir="io"),
                                     Attrs(IOSTANDARD="SSTL15")),
                 Subsignal("dm",     Pins("AA28 AA27 AE28 AH30 AB18 AJ19 AD14 AK16", dir="o")),
-                Subsignal("odt",    Pins("AH24", dir="o")),
+                Subsignal("odt",    Pins("AG20", dir="o")),
                 Attrs(IOSTANDARD="SSTL15", SLEW="FAST"),
             ),
 
