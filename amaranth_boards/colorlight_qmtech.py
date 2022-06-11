@@ -26,18 +26,29 @@ class ColorlightQMTechPlatform(LatticeECP5Platform):
     connectors     = []
     toolchain      = "Trellis"
 
-    def __init__(self, colorlight, daughterboard=False) -> None:
+    def __init__(self, colorlight, daughterboard=False, extra_resources=None, test=False) -> None:
         self.package        = colorlight.package
         self.speed          = colorlight.speed
         self.default_clk    = colorlight.default_clk
         self.device         = colorlight.device
 
-        if daughterboard:
+        assert not (daughterboard and test), "daughterboard and test cannot be active at the same time"
+
+        if test:
+            leds = LEDResources(pins=" ".join(list(self.connectors[0].mapping.values()) + \
+                                              list(self.connectors[1].mapping.values())),
+                                attrs=Attrs(IO_TYPE="LVCMOS33", DRIVE="4"))
+
+            self.resources = [colorlight.resources[0]] + leds + colorlight.resources[2:]
+        elif daughterboard:
             db = QMTechDaughterboard(Attrs(IO_TYPE="LVCMOS33"))
             self.resources  = [colorlight.resources[0]] + colorlight.resources[2:] + db.resources
             self.connectors += db.connectors
         else:
             self.resources = colorlight.resources
+
+        if extra_resources:
+            self.resources += extra_resources
 
         super().__init__()
 
@@ -80,7 +91,7 @@ class ColorlightQMTechPlatform(LatticeECP5Platform):
         }),
         Connector("J", 3, {
             # odd row     even row
-             "7": "R1",     "8": "U16",
+             "7": "U16",   "8": "R1",
              "9": "C18",   "10": "K18",
             "11": "R18",   "12": "T18",
             "13": "P17",   "14": "R17",
@@ -127,4 +138,4 @@ class ColorlightQMTechPlatform(LatticeECP5Platform):
 
 if __name__ == "__main__":
     from .test.blinky import *
-    ColorlightQMTechPlatform(ColorLightI5Platform, True).build(Blinky(), do_program=True)
+    ColorlightQMTechPlatform(ColorLightI5Platform, False).build(Blinky(), do_program=True)
