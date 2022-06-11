@@ -139,4 +139,3 @@ class ColorlightQMTechPlatform(LatticeECP5Platform):
 if __name__ == "__main__":
     from .test.blinky import *
     ColorlightQMTechPlatform(ColorLightI5Platform, False).build(Blinky(), do_program=True)
-
