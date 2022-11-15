@@ -79,6 +79,7 @@ class ArrowDECAPlatform(IntelPlatform):
                 set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
                 set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
                 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+                set_global_assignment -name INTERNAL_FLASH_UPDATE_MODE "SINGLE IMAGE WITH ERAM"
                 """
         }
 
