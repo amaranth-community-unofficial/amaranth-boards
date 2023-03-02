@@ -6,12 +6,12 @@ from amaranth.build import *
 from amaranth.vendor.lattice_ecp5 import *
 from .resources import *
 
+# NOTE: Keep OrangeCrabR0_2Platform for backwards compatibility
+# Originally, there was only OrangeCrabR0_2Platform, but the 85F variant
+# needs a different device.
+__all__ = ["OrangeCrabR0_2Platform", "OrangeCrabR0_2_25FPlatform", "OrangeCrabR0_2_85FPlatform"]
 
-__all__ = ["OrangeCrabR0_2Platform"]
-
-
-class OrangeCrabR0_2Platform(LatticeECP5Platform):
-    device      = "LFE5U-25F"
+class _OrangeCrabR0_2Platform(LatticeECP5Platform):
     package     = "MG285"
     speed       = "8"
     default_clk = "clk"
@@ -124,8 +124,16 @@ class OrangeCrabR0_2Platform(LatticeECP5Platform):
     def toolchain_program(self, products, name):
         dfu_util = os.environ.get("DFU_UTIL", "dfu-util")
         with products.extract("{}.bit".format(name)) as bitstream_filename:
-            subprocess.check_call([dfu_util, "-D", bitstream_filename])
+            subprocess.check_call([dfu_util, "-a 0", "-D", bitstream_filename])
 
+class OrangeCrabR0_2Platform(_OrangeCrabR0_2Platform):
+    device      = "LFE5U-25F"
+
+class OrangeCrabR0_2_25FPlatform(_OrangeCrabR0_2Platform):
+    device      = "LFE5U-25F"
+
+class OrangeCrabR0_2_85FPlatform(_OrangeCrabR0_2Platform):
+    device      = "LFE5U-85F"
 
 if __name__ == "__main__":
     from .test.blinky import *
